@@ -21,6 +21,18 @@ struct symbol
 };
 
 
-// Write your functions here
+// Wrote functions here
+
+bool read_input_from_file(string filename, vector<symbol> symbol_vector)
+{
+    ifstream input_file(filename);
+    if(input_file.is_open())
+    {
+        // Implementation
+        
+        return true;
+    }
+    return false;
+}
 
 #endif
