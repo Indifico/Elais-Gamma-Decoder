@@ -25,11 +25,16 @@ struct symbol
 
 bool read_input_from_file(string filename, vector<symbol> symbol_vector)
 {
+    cout << "Filename: " << filename << endl;
     ifstream input_file(filename);
     if(input_file.is_open())
     {
         // Implementation
-        
+        string line;
+        while(getline(input_file, line))
+        {
+            cout << line << endl;
+        }
         return true;
     }
     return false;
