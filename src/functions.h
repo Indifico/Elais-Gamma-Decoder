@@ -6,6 +6,7 @@
 #include <vector>
 #include <string>
 #include <fstream>
+#include <sstream>
 
 using namespace std;
 
@@ -25,15 +26,19 @@ struct symbol
 
 bool read_input_from_file(string filename, vector<symbol> symbol_vector)
 {
-    cout << "Filename: " << filename << endl;
+    //cout << "Filename: " << filename << endl;
     ifstream input_file(filename);
     if(input_file.is_open())
     {
         // Implementation
-        string line;
-        while(getline(input_file, line))
+        string file_line;
+        while(getline(input_file, file_line))
         {
-            cout << line << endl;
+            //cout << file_line << endl;
+            istringstream line_stream(file_line);
+            char letter;
+            line_stream >> letter;
+            break;
         }
         return true;
     }
