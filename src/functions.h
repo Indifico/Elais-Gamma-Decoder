@@ -148,4 +148,26 @@ void decode_positions_and_populate_original_message(symbol input_symbol, string 
     }
 }
 
+void print_results(vector<symbol> symbol_vector, string original_message)
+{
+    cout << "Alphabet: " << endl;
+
+    for(int i = 0; i < symbol_vector.size(); i++)
+    {
+        symbol current_symbol = symbol_vector.at(i);
+
+        cout << "Symbol: " << current_symbol.data << ", Frequency: " << current_symbol.frequency << endl
+            << "Positions:" << current_symbol.positions.at(0);
+
+        for(int j = 1; j < current_symbol.positions.size(); j++)
+        {
+            cout << ", " << current_symbol.positions.at(i);
+        }
+        cout << endl;
+
+        cout << "Number of bits to represent the positions: " << current_symbol.n_bits_elias_gamma << endl;
+    }
+
+    cout << "Decoded message: " << original_message << endl;
+}
 #endif
