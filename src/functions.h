@@ -53,7 +53,7 @@ bool read_input_from_file(const string &filename, vector<symbol> &symbol_vector)
         }
         return true;
     }
-    return false;
+    return false; // file not found
 }
 
 unsigned int original_message_size(const vector<symbol> &symbol_vector)
@@ -61,15 +61,15 @@ unsigned int original_message_size(const vector<symbol> &symbol_vector)
     unsigned int count = 0;
     for(int i = 0; i < symbol_vector.size(); i++)
     {
-        count += symbol_vector.at(i).frequency;
+        count += symbol_vector.at(i).frequency; // use sum of frequencies to get length
     }
-    
+
     return count;
 }
 
 unsigned int elais_gamma_to_int(string encoding)
 {
-    istringstream encoding_stream(encoding);
+    istringstream encoding_stream(encoding); // parse string from parameter
 
     string zeros;
     string binary;
@@ -77,8 +77,8 @@ unsigned int elais_gamma_to_int(string encoding)
     int binary_int = 0;
     int decimal_int = 0;
 
-    getline(encoding_stream, zeros, '1');
-    getline(encoding_stream, binary);
+    getline(encoding_stream, zeros, '1'); // get zeros from string up to 1
+    getline(encoding_stream, binary); // get the rest as binary
 
     if(binary != "") // avoiding stoi exception
     {
@@ -127,14 +127,15 @@ void decode_positions_and_populate_original_message(symbol &input_symbol, string
 {
     for(int i = 0; i < input_symbol.frequency; i++)
     {
-        unsigned int position = elais_gamma_to_int(input_symbol.elias_gamma_positions.at(i)) - 1;
-        input_symbol.positions.push_back(position);
-        original_message.at(position) = input_symbol.data;
+        unsigned int position = elais_gamma_to_int(input_symbol.elias_gamma_positions.at(i)) - 1; // decode elais gamma
+        input_symbol.positions.push_back(position); // append decoded int
+        original_message.at(position) = input_symbol.data; // populate position in original message
     }
 }
 
 void print_results(const vector<symbol> &symbol_vector, const string &original_message)
 {
+    // print in requested format
     cout << "Alphabet: " << endl;
 
     for(int i = 0; i < symbol_vector.size(); i++)
@@ -155,4 +156,5 @@ void print_results(const vector<symbol> &symbol_vector, const string &original_m
 
     cout << "Decoded message: " << original_message << endl;
 }
+
 #endif
