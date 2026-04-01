@@ -4,7 +4,7 @@ A simple project demonstrating the use of OOP structures, C++ project structure,
 
 ### Usage
 
-An example input file & output can be seen below. Lines are structured by symbol (character), where each following encoding represents the position at which that symbol appears in the final output message. Encodings are separated by spaces. The program assumes the input is always valid, so unexpected behavior will occur if the format is not followed.
+An example input file & output can be seen below. Lines are structured by symbol (character), where each following encoding represents the position at which that symbol appears in the final output message. Encodings are separated by spaces (or tabs, as discovered later). The program assumes the input is always valid, so unexpected behavior will occur if the format is not followed.
 
 #### Input File Example:
 *test/testCase0.txt*
