@@ -138,4 +138,12 @@ unsigned int elais_gamma_to_int(string encoding)
     return encoding_n + decimal_int;
 }
 
+void decode_positions_and_populate_original_message(symbol input_symbol, string original_message)
+{
+    for(int i = 0; i < input_symbol.frequency; i++)
+    {
+        original_message.at(elais_gamma_to_int(input_symbol.elias_gamma_positions.at(i))) = input_symbol.data;
+    }
+}
+
 #endif
