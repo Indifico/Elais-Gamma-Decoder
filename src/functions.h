@@ -42,20 +42,20 @@ bool read_input_from_file(string filename, vector<symbol> symbol_vector)
             line_stream >> line_symbol.data; // assigns leading character to the symbol's data char
             line_stream.ignore();
 
-            cout << "Character: " << line_symbol.data << " ";
-            //cout << "Encodings: ";
+            cout << "Character: " << line_symbol.data << endl;
+            cout << "Encodings: ";
             string encoding;
             while(getline(line_stream, encoding, ' '))
             {
                 line_symbol.frequency++;
                 line_symbol.elias_gamma_positions.push_back(encoding); // adds each encoding listed to position vector
                 
-                line_symbol.n_bits_elias_gamma += encoding.length();
-                
-                //cout << encoding << " ";
+                line_symbol.n_bits_elias_gamma += encoding.length(); // adds bits from each encoding to bit counter
+                cout << encoding << " ";
             }
-            cout << "Frequency: " << line_symbol.frequency << " ";
+            cout << endl << "Frequency: " << line_symbol.frequency << " ";
             cout << "Total Bits: " << line_symbol.n_bits_elias_gamma << endl;
+            cout << endl;
         }
         return true;
     }
@@ -65,13 +65,65 @@ bool read_input_from_file(string filename, vector<symbol> symbol_vector)
 unsigned int elais_gamma_to_int(string encoding)
 {
     istringstream encoding_stream(encoding);
+
     string zeros;
+    string binary;
+    int encoding_n = 2;
+    int binary_int = 0;
+    int decimal_int = 0;
+
     getline(encoding_stream, zeros, '1');
+    getline(encoding_stream, binary);
 
-    cout << zeros.length() << endl;
+    if(binary != "") // avoiding stoi exception
+    {
+        binary_int = stoi(binary);
+    }
+
+    cout << "Encoding Test: " << encoding << endl;
+    cout << "Number of zeros: " << zeros.length() << endl;
+    cout << "Binary: " << binary << endl;
+
+    if(zeros.length() == 0) // N = 2^0
+    {
+        encoding_n = 1;
+    }
+    else // N = 2^n_zeros
+    {
+        for(int i = 0; i < zeros.length() - 1; i++)
+        {
+            encoding_n *= 2;
+        }
+    }
+
+    cout << "Encoding N: " << encoding_n << endl;
+
+    int index = 0;
+    while(binary_int > 0) // binary to decimal
+    {
+        if(binary_int % 10 == 1)
+        {
+            if(index > 0)
+            {
+                int add_int = 2;
+                for(int i = 0; i < index - 1; i++)
+                {
+                    add_int *= 2;
+                }
+                decimal_int += add_int;
+            }
+            else
+            {
+                decimal_int += 1;
+            }
+        }
+        binary_int /= 10;
+        index++;
+    }
+    cout << "Binary Int: " << decimal_int << endl;
+    cout << endl;
     
-
-    return 0;
+    return encoding_n + decimal_int;
 }
 
 #endif

@@ -21,6 +21,12 @@ int main()
         cout << "File not found." << endl;
     } 
     */
+
+    // testing purposes only
     read_input_from_file(filename, alphabet);
+    elais_gamma_to_int("0001010");
+    elais_gamma_to_int("0001100");
+    elais_gamma_to_int("00101");
+    elais_gamma_to_int("1"); 
     return 0;
 }
