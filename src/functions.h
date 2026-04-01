@@ -42,7 +42,7 @@ bool read_input_from_file(const string &filename, vector<symbol> &symbol_vector)
             line_stream.ignore();
 
             string encoding;
-            while(getline(line_stream, encoding, ' ')) // reads each encoded position; (' ' == delimiter)
+            while(line_stream >> encoding) // reads each encoded position; (' ' (or /t ig) == delimiter)
             {
                 line_symbol.frequency++;
                 line_symbol.elias_gamma_positions.push_back(encoding); // adds each encoding listed to position vector
