@@ -24,9 +24,8 @@ struct symbol
 
 // Wrote functions here
 
-bool read_input_from_file(string filename, vector<symbol> symbol_vector)
+bool read_input_from_file(const string &filename, vector<symbol> &symbol_vector)
 {
-    //cout << "Filename: " << filename << endl;
     ifstream input_file(filename);
     if(input_file.is_open())
     {
@@ -42,8 +41,6 @@ bool read_input_from_file(string filename, vector<symbol> symbol_vector)
             line_stream >> line_symbol.data; // assigns leading character to the symbol's data char
             line_stream.ignore();
 
-            cout << "Character: " << line_symbol.data << endl;
-            cout << "Encodings: ";
             string encoding;
             while(getline(line_stream, encoding, ' '))
             {
@@ -51,20 +48,15 @@ bool read_input_from_file(string filename, vector<symbol> symbol_vector)
                 line_symbol.elias_gamma_positions.push_back(encoding); // adds each encoding listed to position vector
                 
                 line_symbol.n_bits_elias_gamma += encoding.length(); // adds bits from each encoding to bit counter
-                cout << encoding << " ";
             }
             symbol_vector.push_back(line_symbol); // add read symbol data to vector
-
-            cout << endl << "Frequency: " << line_symbol.frequency << " ";
-            cout << "Total Bits: " << line_symbol.n_bits_elias_gamma << endl;
-            cout << endl;
         }
         return true;
     }
     return false;
 }
 
-unsigned int original_message_size(vector<symbol> symbol_vector)
+unsigned int original_message_size(const vector<symbol> &symbol_vector)
 {
     unsigned int count = 0;
     for(int i = 0; i < symbol_vector.size(); i++)
@@ -92,10 +84,6 @@ unsigned int elais_gamma_to_int(string encoding)
         binary_int = stoi(binary);
     }
 
-    cout << "Encoding Test: " << encoding << endl;
-    cout << "Number of zeros: " << zeros.length() << endl;
-    cout << "Binary: " << binary << endl;
-
     if(zeros.length() == 0) // N = 2^0
     {
         encoding_n = 1;
@@ -107,8 +95,6 @@ unsigned int elais_gamma_to_int(string encoding)
             encoding_n *= 2;
         }
     }
-
-    cout << "Encoding N: " << encoding_n << endl;
 
     int index = 0;
     while(binary_int > 0) // binary to decimal
@@ -132,23 +118,21 @@ unsigned int elais_gamma_to_int(string encoding)
         binary_int /= 10;
         index++;
     }
-    cout << "Binary Int: " << decimal_int << endl;
-    cout << endl;
     
     return encoding_n + decimal_int;
 }
 
-void decode_positions_and_populate_original_message(symbol input_symbol, string original_message)
+void decode_positions_and_populate_original_message(symbol &input_symbol, string &original_message)
 {
     for(int i = 0; i < input_symbol.frequency; i++)
     {
-        unsigned int position = elais_gamma_to_int(input_symbol.elias_gamma_positions.at(i));
+        unsigned int position = elais_gamma_to_int(input_symbol.elias_gamma_positions.at(i)) - 1;
         input_symbol.positions.push_back(position);
         original_message.at(position) = input_symbol.data;
     }
 }
 
-void print_results(vector<symbol> symbol_vector, string original_message)
+void print_results(const vector<symbol> &symbol_vector, const string &original_message)
 {
     cout << "Alphabet: " << endl;
 
@@ -157,11 +141,11 @@ void print_results(vector<symbol> symbol_vector, string original_message)
         symbol current_symbol = symbol_vector.at(i);
 
         cout << "Symbol: " << current_symbol.data << ", Frequency: " << current_symbol.frequency << endl
-            << "Positions:" << current_symbol.positions.at(0);
+            << "Positions: ";
 
-        for(int j = 1; j < current_symbol.positions.size(); j++)
+        for(int j = 0; j < current_symbol.positions.size(); j++)
         {
-            cout << ", " << current_symbol.positions.at(i);
+            cout << current_symbol.positions.at(j) << " ";
         }
         cout << endl;
 
