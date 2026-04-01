@@ -53,6 +53,8 @@ bool read_input_from_file(string filename, vector<symbol> symbol_vector)
                 line_symbol.n_bits_elias_gamma += encoding.length(); // adds bits from each encoding to bit counter
                 cout << encoding << " ";
             }
+            symbol_vector.push_back(line_symbol); // add read symbol data to vector
+
             cout << endl << "Frequency: " << line_symbol.frequency << " ";
             cout << "Total Bits: " << line_symbol.n_bits_elias_gamma << endl;
             cout << endl;
