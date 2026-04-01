@@ -38,7 +38,7 @@ bool read_input_from_file(const string &filename, vector<symbol> &symbol_vector)
 
             istringstream line_stream(file_line); // use line string as stream for parsing
 
-            line_stream >> line_symbol.data; // assigns leading character to the symbol's data char
+            line_symbol.data = line_stream.get(); // assigns leading character to the symbol's data char
             line_stream.ignore();
 
             string encoding;
