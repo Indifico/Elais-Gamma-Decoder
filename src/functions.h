@@ -29,20 +29,20 @@ bool read_input_from_file(const string &filename, vector<symbol> &symbol_vector)
     ifstream input_file(filename);
     if(input_file.is_open())
     {
-        // Implementation
         string file_line;
-        while(getline(input_file, file_line))
+        while(getline(input_file, file_line)) // get each line of file as string
         {
             symbol line_symbol; // temp var for the latest line's symbol
             line_symbol.frequency = 0;
             line_symbol.n_bits_elias_gamma = 0;
 
-            istringstream line_stream(file_line);
+            istringstream line_stream(file_line); // use line string as stream for parsing
+
             line_stream >> line_symbol.data; // assigns leading character to the symbol's data char
             line_stream.ignore();
 
             string encoding;
-            while(getline(line_stream, encoding, ' '))
+            while(getline(line_stream, encoding, ' ')) // reads each encoded position; (' ' == delimiter)
             {
                 line_symbol.frequency++;
                 line_symbol.elias_gamma_positions.push_back(encoding); // adds each encoding listed to position vector
@@ -61,8 +61,9 @@ unsigned int original_message_size(const vector<symbol> &symbol_vector)
     unsigned int count = 0;
     for(int i = 0; i < symbol_vector.size(); i++)
     {
-        count += symbol_vector.at(i).data;
+        count += symbol_vector.at(i).frequency;
     }
+    
     return count;
 }
 
