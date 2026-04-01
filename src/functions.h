@@ -142,7 +142,9 @@ void decode_positions_and_populate_original_message(symbol input_symbol, string 
 {
     for(int i = 0; i < input_symbol.frequency; i++)
     {
-        original_message.at(elais_gamma_to_int(input_symbol.elias_gamma_positions.at(i))) = input_symbol.data;
+        unsigned int position = elais_gamma_to_int(input_symbol.elias_gamma_positions.at(i));
+        input_symbol.positions.push_back(position);
+        original_message.at(position) = input_symbol.data;
     }
 }
 
