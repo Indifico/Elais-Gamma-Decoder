@@ -64,6 +64,16 @@ bool read_input_from_file(string filename, vector<symbol> symbol_vector)
     return false;
 }
 
+unsigned int original_message_size(vector<symbol> symbol_vector)
+{
+    unsigned int count = 0;
+    for(int i = 0; i < symbol_vector.size(); i++)
+    {
+        count += symbol_vector.at(i).data;
+    }
+    return count;
+}
+
 unsigned int elais_gamma_to_int(string encoding)
 {
     istringstream encoding_stream(encoding);
