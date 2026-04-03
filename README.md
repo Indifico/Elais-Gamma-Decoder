@@ -1,8 +1,8 @@
 # Elias Gamma Decoder
 ### Programming Assignment 1 - COSC 1437
 A simple project demonstrating the use of OOP structures, C++ project structure, and header including procedures.
-<br></br>
-### Installation
+
+## Installation
 
 #### Unix Systems (macOS & Linux)
 
@@ -13,15 +13,15 @@ A simple project demonstrating the use of OOP structures, C++ project structure,
 #### Windows
 
 - egdecoder.exe available in [Releases](https://github.com/Indifico/Elais-Gamma-Decoder/releases)
-<br></br>
-### Usage
+
+## Usage
 
 An example input file & output can be seen below. Lines are structured by symbol (character), where each following encoding represents the position at which that symbol appears in the final output message. Encodings are separated by spaces (or tabs, as discovered later). The program assumes the input is always valid, so unexpected behavior will occur if the format is not followed.
 
 When the program is run, the terminal will wait for input. Input the file path and the result will print
-<br></br>
-### Examples
-#### Input File Example:
+
+## Examples
+### Input File Example:
 *test/testCase0.txt*
 ```
 A 1 010 00100 0001000 0001010
@@ -30,7 +30,7 @@ B 00101 0001001
 D 011 0001011 0001100  
 ```
 
-#### Output Example:
+### Output Example:
 ```
 Alphabet: 
 Symbol: A, Frequency: 5
