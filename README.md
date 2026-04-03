@@ -14,11 +14,13 @@ A simple project demonstrating the use of OOP structures, C++ project structure,
 
 - egdecoder.exe available in [Releases](https://github.com/Indifico/Elais-Gamma-Decoder/releases)
 
+*Note: The executable must be ran in an already open terminal window, otherwise the output will not display*
+
 ## Usage
 
 An example input file & output can be seen below. Lines are structured by symbol (character), where each following encoding represents the position at which that symbol appears in the final output message. Encodings are separated by spaces (or tabs, as discovered later). The program assumes the input is always valid, so unexpected behavior will occur if the format is not followed.
 
-When the program is run, the terminal will wait for input. Input the file path and the result will print
+When the program is run, the terminal will wait for input. Input the file path and the result will print.
 
 ## Examples
 ### Input File Example:
